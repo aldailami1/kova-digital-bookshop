@@ -9,7 +9,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 
 export const Route = createFileRoute("/_authenticated/account")({
-  validateSearch: (s: Record<string, unknown>): { order?: string } => ({ order: typeof s.order === "string" ? s.order : undefined }),
+  validateSearch: (s: Record<string, unknown>): { order?: string | undefined } => ({ order: typeof s["order"] === "string" ? s["order"] : undefined }),
   head: () => ({
     meta: [
       { title: "حسابي — Kova" },
@@ -38,7 +38,7 @@ function Account() {
     queryKey: ["profile", user.id],
     queryFn: async () => (await supabase.from("profiles").select("*").eq("id", user.id).maybeSingle()).data,
   });
-  useEffect(() => { if (profile.data?.display_name) setName(profile.data.display_name); }, [profile.data]);
+  useEffect(() => { if (profile.data?.display_name) setName(profile.data.display_name); return undefined; }, [profile.data]);
 
   const orders = useQuery({
     queryKey: ["my-orders", user.id],
@@ -51,7 +51,7 @@ function Account() {
 
   const saveProfile = async () => {
     const { error } = await supabase.from("profiles").upsert({ id: user.id, display_name: name.trim().slice(0, 60) });
-    if (error) return toast.error("تعذّر الحفظ");
+    if (error) { toast.error("تعذّر الحفظ"); return; }
     toast.success("تم حفظ الملف الشخصي");
     qc.invalidateQueries({ queryKey: ["profile", user.id] });
   };

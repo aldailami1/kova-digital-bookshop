@@ -9,16 +9,16 @@ import { Slider } from "@/components/ui/slider";
 import { useStore } from "@/lib/store";
 import { cn } from "@/lib/utils";
 
-type Search = { q?: string; kind?: "book" | "story"; genre?: string; author?: string; max?: number; sort?: "new" | "best" | "price-asc" | "price-desc" | "rating" };
+type Search = { q?: string | undefined; kind?: "book" | "story" | undefined; genre?: string | undefined; author?: string | undefined; max?: number | undefined; sort?: "new" | "best" | "price-asc" | "price-desc" | "rating" | undefined };
 
 export const Route = createFileRoute("/catalog")({
   validateSearch: (s: Record<string, unknown>): Search => ({
-    q: typeof s.q === "string" ? s.q : undefined,
-    kind: s.kind === "book" || s.kind === "story" ? s.kind : undefined,
-    genre: typeof s.genre === "string" ? s.genre : undefined,
-    author: typeof s.author === "string" ? s.author : undefined,
-    max: typeof s.max === "number" ? s.max : undefined,
-    sort: ["new", "best", "price-asc", "price-desc", "rating"].includes(s.sort as string) ? (s.sort as Search["sort"]) : undefined,
+    q: typeof s["q"] === "string" ? s["q"] : undefined,
+    kind: s["kind"] === "book" || s["kind"] === "story" ? s["kind"] : undefined,
+    genre: typeof s["genre"] === "string" ? s["genre"] : undefined,
+    author: typeof s["author"] === "string" ? s["author"] : undefined,
+    max: typeof s["max"] === "number" ? s["max"] : undefined,
+    sort: ["new", "best", "price-asc", "price-desc", "rating"].includes(s["sort"] as string) ? (s["sort"] as Search["sort"]) : undefined,
   }),
   head: () => ({
     meta: [
