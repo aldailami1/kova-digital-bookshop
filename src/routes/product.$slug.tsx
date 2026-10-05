@@ -47,14 +47,14 @@ function ProductPage() {
 
   const submitReview = async () => {
     if (!user) return;
-    if (comment.trim().length < 3) return toast.error("اكتب تعليقاً أطول قليلاً");
+    if (comment.trim().length < 3) { toast.error("اكتب تعليقاً أطول قليلاً"); return; }
     setSending(true);
     const { error } = await supabase.from("reviews").insert({
       product_id: p.id, user_id: user.id, rating, comment: comment.trim().slice(0, 1000),
-      reviewer_name: (user.user_metadata?.display_name as string) || user.email?.split("@")[0] || "قارئ",
+      reviewer_name: (user.user_metadata?.["display_name"] as string) || user.email?.split("@")[0] || "قارئ",
     });
     setSending(false);
-    if (error) return toast.error("تعذّر إرسال التقييم");
+    if (error) { toast.error("تعذّر إرسال التقييم"); return; }
     setComment("");
     toast.success("شكراً! تمت إضافة تقييمك");
     qc.invalidateQueries({ queryKey: ["reviews", p.id] });

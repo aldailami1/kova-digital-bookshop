@@ -105,7 +105,7 @@ function Catalog() {
           </div>
           <div>
             <div className="mb-3 flex justify-between text-sm font-medium"><span>السعر الأقصى</span><span className="text-muted-foreground">{format(s.max ?? maxPrice)}</span></div>
-            <Slider dir="rtl" min={1} max={maxPrice} step={1} value={[s.max ?? maxPrice]} onValueChange={([v]) => set({ max: v >= maxPrice ? undefined : v })} />
+            <Slider dir="rtl" min={1} max={maxPrice} step={1} value={[s.max ?? maxPrice]} onValueChange={([v = maxPrice]) => set({ max: v >= maxPrice ? undefined : v })} />
           </div>
           <div>
             <div className="mb-2 text-sm font-medium">الترتيب</div>

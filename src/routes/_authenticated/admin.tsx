@@ -60,7 +60,7 @@ function Admin() {
 
   const saveProduct = async () => {
     if (!draft) return;
-    if (!draft.title.trim() || !draft.author.trim()) return toast.error("العنوان والمؤلف مطلوبان");
+    if (!draft.title.trim() || !draft.author.trim()) { toast.error("العنوان والمؤلف مطلوبان"); return; }
     const row = {
       title: draft.title.trim(), author: draft.author.trim(), price: Number(draft.price), kind: draft.kind,
       description: draft.description ?? "", stock: Number(draft.stock ?? 0), cover_hue: Number(draft.cover_hue ?? 30),
@@ -69,7 +69,7 @@ function Admin() {
     const { error } = draft.id
       ? await supabase.from("products").update(row).eq("id", draft.id)
       : await supabase.from("products").insert({ ...row, slug: `p-${Date.now().toString(36)}` });
-    if (error) return toast.error("تعذّر الحفظ");
+    if (error) { toast.error("تعذّر الحفظ"); return; }
     toast.success("تم الحفظ");
     setDraft(null);
     refresh("products");
@@ -78,7 +78,7 @@ function Admin() {
   const delProduct = async (id: string) => {
     if (!confirm("حذف هذا المنتج؟")) return;
     const { error } = await supabase.from("products").delete().eq("id", id);
-    if (error) return toast.error("تعذّر الحذف");
+    if (error) { toast.error("تعذّر الحذف"); return; }
     refresh("products");
   };
 
@@ -90,7 +90,7 @@ function Admin() {
   const addCat = async () => {
     if (!newCat.name.trim()) return;
     const { error } = await supabase.from("categories").insert({ name: newCat.name.trim(), kind: newCat.kind, slug: `c-${Date.now().toString(36)}` });
-    if (error) return toast.error("تعذّر الإضافة");
+    if (error) { toast.error("تعذّر الإضافة"); return; }
     setNewCat({ name: "", kind: newCat.kind });
     refresh("categories");
   };

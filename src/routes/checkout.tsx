@@ -43,15 +43,15 @@ function Checkout() {
 
   const pay = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (name.trim().length < 2) return toast.error("أدخل الاسم على البطاقة");
-    if (card.replace(/\s/g, "").length < 12) return toast.error("رقم البطاقة غير صالح");
+    if (name.trim().length < 2) { toast.error("أدخل الاسم على البطاقة"); return; }
+    if (card.replace(/\s/g, "").length < 12) { toast.error("رقم البطاقة غير صالح"); return; }
     setBusy(true);
     const { data, error } = await supabase.rpc("place_order", {
       _items: items.map((i) => ({ product_id: i.product_id, quantity: i.quantity })),
       _customer_name: name.trim(),
     });
     setBusy(false);
-    if (error) return toast.error(error.message.includes("نفد") ? error.message : "تعذّر إتمام الطلب");
+    if (error) { toast.error(error.message.includes("نفد") ? error.message : "تعذّر إتمام الطلب"); return; }
     clear();
     toast.success("تم الدفع بنجاح! طلبك جاهز للتحميل");
     navigate({ to: "/account", search: { order: data as string } });
