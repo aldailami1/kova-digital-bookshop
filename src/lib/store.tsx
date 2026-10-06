@@ -91,7 +91,7 @@ export function StoreProvider({ children }: { children: ReactNode }) {
     localStorage.setItem("kova-currency", c);
   };
   const format = (usd: number) =>
-    new Intl.NumberFormat("ar", { style: "currency", currency, maximumFractionDigits: 2 }).format(usd * CURRENCIES[currency].rate);
+    new Intl.NumberFormat("en-US", { style: "currency", currency, maximumFractionDigits: 2 }).format(usd * CURRENCIES[currency].rate);
 
   return (
     <Ctx.Provider

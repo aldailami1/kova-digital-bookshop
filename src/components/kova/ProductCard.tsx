@@ -27,11 +27,11 @@ export function ProductCard({ p }: { p: Product }) {
           <Button
             size="icon"
             variant="secondary"
-            aria-label="أضف إلى السلة"
+            aria-label="Add to bag"
             disabled={p.stock <= 0}
             onClick={() => {
               add({ product_id: p.id, slug: p.slug, title: p.title, author: p.author, price: Number(p.price), cover_hue: p.cover_hue });
-              toast.success(`أُضيف «${p.title}» إلى السلة`);
+              toast.success(`${p.title} was added to your bag.`);
             }}
           >
             <ShoppingBag className="h-4 w-4" />

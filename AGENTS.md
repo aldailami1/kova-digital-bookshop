@@ -12,3 +12,4 @@
 - Kova store reads catalog data from the browser client with useQuery; checkout goes through the `place_order` DB function so prices/stock are computed server-side.
 - Admin access is a `user_roles` row checked via `has_role`; the first signed-up user becomes admin automatically.
 - Cart, currency and theme live in `src/lib/store.tsx` (localStorage); prices are stored in USD and converted on display.
+- Shared storefront chrome owns account dialogs, translation entry points, and support UI so every route stays consistent.

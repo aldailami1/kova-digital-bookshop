@@ -14,7 +14,7 @@ export function BookCover({ title, author, hue, kind, className, size = "md" }: 
       <div className="absolute inset-3 rounded-md border border-primary-foreground/25" />
       <div className="absolute -left-10 -top-10 h-40 w-40 rounded-full bg-primary-foreground/10 blur-2xl" />
       <div className="relative flex h-full flex-col justify-between p-5 text-primary-foreground dark:text-foreground">
-        <span className="text-[10px] tracking-widest opacity-80">{kind === "story" ? "قصة" : "KOVA"}</span>
+        <span className="text-[10px] tracking-widest opacity-80">{kind === "story" ? "STORY" : "KOVA"}</span>
         <div>
           <h3 className={cn("font-display font-bold leading-snug drop-shadow", size === "lg" ? "text-3xl" : size === "sm" ? "text-sm" : "text-lg")}>
             {title}
