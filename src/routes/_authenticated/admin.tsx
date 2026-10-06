@@ -209,7 +209,7 @@ function Admin() {
 
       <Dialog open={!!draft} onOpenChange={(o) => !o && setDraft(null)}>
         <DialogContent dir="ltr" className="max-h-[90vh] overflow-y-auto">
-          <DialogHeader><DialogTitle>{draft?.id ? "Edit المنتج" : "New product"}</DialogTitle></DialogHeader>
+          <DialogHeader><DialogTitle>{draft?.id ? "Edit product" : "New product"}</DialogTitle></DialogHeader>
           {draft && (
             <div className="grid gap-3">
               <div className="space-y-1"><Label>Title</Label><Input value={draft.title} onChange={(e) => setDraft({ ...draft, title: e.target.value })} /></div>
