@@ -1,14 +1,108 @@
-# Welcome to your Lovable project
+# Kova: Your Digital Library
+
+# تعليمات النظام الأساسية: بناء منصة "Kova" العالمية للكتب والقصص
+
+
+
+بصفتك مهندس برمجيات رئيسياً ومصمم واجهات مستخدم متطور، مهمتك هي تصميم وتطوير وكتابة أكواد جاهزة للإنتاج لمنصة **"Kova"**، وهي متجر رقمي عالمي ومتكامل للكتب والقصص يتميز بالسرعة الفائقة والتصميم العصري. يجب أن تدعم المنصة اللغة العربية بالكامل وتخطيط من اليمين إلى اليسار (RTL).
+
+
+
+---
+
+
+
+## 1. التقنيات الهندسية والمعايير:
+
+- **الإطار البرمجي:** Next.js (App Router) مع تقنية Server-Side Rendering (SSR).
+
+- **التصميم والحركات:** Tailwind CSS مع تأثيرات زجاجية أنيقة (Glassmorphism)، وتصميم متجاوب بالكامل مع الهواتف والأجهزة اللوحية (Mobile-First)، مع دعم كامل للوضع الفاتح والداكن (Light/Dark Mode)، وخطوط عربية واضحة ومريحة للقراءة.
+
+- **قاعدة البيانات والمصادقة:** Supabase (PostgreSQL) مع نظام مصادقة آمن وحماية الجداول (RLS).
+
+- **اللغة والتنسيق:** دعم كامل للغة العربية (RTL)، وتعدد العملات، وتجهيز التكامل مع بوابات الدفع.
+
+
+
+---
+
+
+
+## 2. المكونات والصفحات المطلوبة للتنفيذ الفوري:
+
+
+
+1. **الصفحة الرئيسية (Landing Page):**
+
+   - قسم ترحيبي جذاب (Hero Section)، وعروض مميزة، وشبكة تعرض أحدث وأبرز الكتب والقصص.
+
+   - شريط تنقل علوي (Navbar) زجاجي يتضمن شعار "Kova"، محرك بحث، روابط الأقسام، مؤشر سلة التسوق، وحساب المستخدم.
+
+   - تذييل احترافي (Footer).
+
+
+
+2. **كتالوج المنتجات وفلاتر البحث (Catalog & Filters):**
+
+   - صفحة كتالوج شاملة مقسمة إلى فئتين رئيسيتين: **الكتب** و **القصص**.
+
+   - خيارات فلترة متقدمة حسب: النوع الأدبي (Genre)، المؤلف، السعر، الأكثر مبيعاً، والإصدارات الجديدة.
+
+   - محرك بحث فوري متقدم.
+
+
+
+3. **صفحة المنتج التفصيلية (Product Detail Page):**
+
+   - تعرض لكل منتج: صورة الغلاف، العنوان، اسم المؤلف، الوصف التفصيلي، السعر، التقييم بالنجوم، آراء القراء وتقييماتهم، وزر "الإضافة إلى السلة".
+
+
+
+4. **سلة الشراء والدفع الآمن:**
+
+   - سلة تسوق تفاعلية لإدارة الكميات والمنتجات.
+
+   - صفحة دفع آمنة مهيأة للربط ببوابات الدفع (Stripe/Payment Gateways).
+
+
+
+5. **حساب المستخدم (Customer Dashboard):**
+
+   - صفحة خاصة بالعميل لعرض ملفه الشخصي، سجل الطلبات، والفواتير، ورابط التحميل الآمن للمنتجات الرقمية المشتراة.
+
+
+
+6. **لوحة التحكم الإدارية (Admin Dashboard):**
+
+   - واجهة إدارة متكاملة ومحمية تتيح: إدارة وتعديل المنتجات، إضافة وحذف الفئات، متابعة الطلبات والوضع المالي، إدارة المخزون، ومراجعة وتقييم آراء العملاء.
+
+
+
+7. **البيانات التجريبية الواقعية (Seed Data):**
+
+   - تعبئة قاعدة البيانات ببيانات تجريبية واقعية وغنية لكتب وقصص عربية متنوعة (تتضمن الأغلفة، الأسماء، المؤلفين، الأسعار، التقييمات، وآراء القراء) لتبدو المنصة جاهزة وعاملة بشكل كامل فور الإطلاق.
+
+
+
+---
+
+
+
+## 3. تعليمات التنفيذ الإلزامي:
+
+- قم بكتابة وتوليد أكواد برمجية كاملة، عاملة، ونظيفة تماماً مع استيراد المكتبات وأنواع TypeScript اللازمة – ممنوع استخدام الاختصارات أو التعليقات الوهمية (TODO).
+
+- نفذ كل ما سبق بالكامل وبشكل تلقائي مستقل، وأنشئ جميع الصفحات والوظائف دفعة واحدة ودون طرح أي أسئلة إضافية.
 
 This project was built with [Lovable](https://lovable.dev).
 
 ## Build with Lovable
 
-Open your project in the [Lovable editor](https://lovable.dev) and keep building.
+Continue developing this project in the [Lovable editor](https://lovable.dev/projects/cb32ba09-cf50-4a56-bb8f-b5625af4a975).
 
 - **Ship faster**: describe what you want to build and Lovable handles the code.
-- **Stay in sync**: connect the project to GitHub and every change made in Lovable is committed straight to your repository.
-- **Full ownership**: this code is yours. Push to your repository and your changes sync back into Lovable, ready for your next prompt.
+- **Stay in sync**: every change made in Lovable is committed straight to this repository.
+- **Full ownership**: this code is yours. Push to `main` on GitHub and your changes sync back into Lovable, ready for your next prompt.
 
 ## Development
 
@@ -20,10 +114,3 @@ cd <repository-name>
 npm i
 npm run dev
 ```
-
-## Built with
-
-- TanStack Start
-- TypeScript
-- React
-- Tailwind CSS
