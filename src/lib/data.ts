@@ -5,7 +5,7 @@ export type Product = Database["public"]["Tables"]["products"]["Row"];
 export type Category = Database["public"]["Tables"]["categories"]["Row"];
 export type Review = Database["public"]["Tables"]["reviews"]["Row"];
 
-export const KIND_LABEL = { book: "الكتب", story: "القصص" } as const;
+export const KIND_LABEL = { book: "Books", story: "Stories" } as const;
 
 export async function fetchProducts(): Promise<Product[]> {
   const { data, error } = await supabase.from("products").select("*").order("created_at", { ascending: true });

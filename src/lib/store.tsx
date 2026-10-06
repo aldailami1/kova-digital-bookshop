@@ -5,10 +5,10 @@ import { supabase } from "@/integrations/supabase/client";
 export type CartItem = { product_id: string; slug: string; title: string; author: string; price: number; cover_hue: number; quantity: number };
 export type Currency = "USD" | "SAR" | "AED" | "EGP";
 export const CURRENCIES: Record<Currency, { rate: number; label: string }> = {
-  USD: { rate: 1, label: "دولار" },
-  SAR: { rate: 3.75, label: "ريال" },
-  AED: { rate: 3.67, label: "درهم" },
-  EGP: { rate: 48.5, label: "جنيه" },
+  USD: { rate: 1, label: "US Dollar" },
+  SAR: { rate: 3.75, label: "Saudi Riyal" },
+  AED: { rate: 3.67, label: "UAE Dirham" },
+  EGP: { rate: 48.5, label: "Egyptian Pound" },
 };
 
 type Store = {
@@ -91,7 +91,7 @@ export function StoreProvider({ children }: { children: ReactNode }) {
     localStorage.setItem("kova-currency", c);
   };
   const format = (usd: number) =>
-    new Intl.NumberFormat("ar", { style: "currency", currency, maximumFractionDigits: 2 }).format(usd * CURRENCIES[currency].rate);
+    new Intl.NumberFormat("en-US", { style: "currency", currency, maximumFractionDigits: 2 }).format(usd * CURRENCIES[currency].rate);
 
   return (
     <Ctx.Provider
