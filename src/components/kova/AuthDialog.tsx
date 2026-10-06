@@ -21,7 +21,7 @@ export function AuthDialog({ open, onOpenChange, initialMode = "in" }: Props) {
     setBusy(true);
     const result = mode === "in"
       ? await supabase.auth.signInWithPassword({ email, password })
-      : await supabase.auth.signUp({ email, password, options: { emailRedirectTo: `${window.location.origin}/auth` } });
+      : await supabase.auth.signUp({ email, password, options: { emailRedirectTo: returnUrl() } });
     setBusy(false);
     if (result.error) {
       toast.error(mode === "in" ? "We couldn’t sign you in. Check your details and try again." : result.error.message);
@@ -35,8 +35,12 @@ export function AuthDialog({ open, onOpenChange, initialMode = "in" }: Props) {
     onOpenChange(false);
   };
 
+  // Keep /auth?next=... so sign-in returns to the page that requested it (e.g. agent consent).
+  const returnUrl = () =>
+    window.location.pathname === "/auth" ? window.location.href : `${window.location.origin}/auth`;
+
   const google = async () => {
-    const result = await lovable.auth.signInWithOAuth("google", { redirect_uri: `${window.location.origin}/auth` });
+    const result = await lovable.auth.signInWithOAuth("google", { redirect_uri: returnUrl() });
     if (result.error) toast.error("Google sign-in is unavailable right now.");
   };
 
