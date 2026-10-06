@@ -11,10 +11,10 @@ import { useStore } from "@/lib/store";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Kova — متجر عربي عالمي للكتب والقصص" },
-      { name: "description", content: "اكتشف أجمل الروايات والقصص العربية، واشترِ نسخك الرقمية والمطبوعة بسهولة من Kova." },
-      { property: "og:title", content: "Kova — متجر الكتب والقصص" },
-      { property: "og:description", content: "روايات، تاريخ، فلسفة، وقصص للأطفال — كلها في مكان واحد." },
+      { title: "Kova — Remarkable books, thoughtfully chosen" },
+      { name: "description", content: "Discover curated books and stories, from modern literature to timeless classics, at Kova." },
+      { property: "og:title", content: "Kova — Remarkable books, thoughtfully chosen" },
+      { property: "og:description", content: "Literature, history, philosophy, and stories for every kind of reader." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
@@ -58,20 +58,20 @@ function Index() {
         <div className="mx-auto grid max-w-7xl items-center gap-12 px-4 pb-16 md:grid-cols-2">
           <div className="rise">
             <span className="glass inline-flex items-center gap-2 rounded-full px-3 py-1 text-xs">
-              <Sparkles className="h-3.5 w-3.5 text-accent" /> أكثر من ١٨ عنواناً جديداً هذا الشهر
+              <Sparkles className="h-3.5 w-3.5 text-accent" /> 18 new reads, one beautiful collection
             </span>
             <h1 className="mt-5 text-4xl font-extrabold leading-tight md:text-6xl">
-              كل حكاية تبدأ<br />بصفحة <span className="text-accent">واحدة.</span>
+              Your next world<br />starts with <span className="text-accent">one page.</span>
             </h1>
             <p className="mt-5 max-w-md text-lg text-muted-foreground">
-              Kova يجمع لك أجمل الكتب والقصص العربية — من كلاسيكيات الأدب إلى حكايات ما قبل النوم — بنسخ رقمية فورية.
+              Thoughtfully curated books and stories—from literary classics to bedtime favorites—with instant digital access.
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
               <Button size="lg" className="rounded-full" asChild>
-                <Link to="/catalog" search={{ kind: "book" }}>تصفّح الكتب <ArrowLeft className="h-4 w-4" /></Link>
+                <Link to="/catalog" search={{ kind: "book" }}>Browse books <ArrowLeft className="h-4 w-4 rotate-180" /></Link>
               </Button>
               <Button size="lg" variant="outline" className="glass rounded-full" asChild>
-                <Link to="/catalog" search={{ kind: "story" }}>عالم القصص</Link>
+                <Link to="/catalog" search={{ kind: "story" }}>Explore stories</Link>
               </Button>
             </div>
           </div>
@@ -98,9 +98,9 @@ function Index() {
 
       <section className="mx-auto grid max-w-7xl gap-4 px-4 sm:grid-cols-3">
         {[
-          { icon: Download, t: "تحميل فوري", d: "نسخك الرقمية جاهزة فور الدفع" },
-          { icon: Globe2, t: "شحن عالمي وعملات متعددة", d: "ادفع بالدولار أو الريال أو الدرهم أو الجنيه" },
-          { icon: BookOpen, t: "مختارات منتقاة", d: "عناوين يختارها محررون قرّاء" },
+          { icon: Download, t: "Instant access", d: "Your digital editions are ready right after checkout" },
+          { icon: Globe2, t: "Global currencies", d: "Shop in USD, SAR, AED, or EGP" },
+          { icon: BookOpen, t: "Reader-led curation", d: "Every title is chosen with care" },
         ].map(({ icon: I, t, d }) => (
           <div key={t} className="glass flex items-center gap-4 rounded-2xl p-5">
             <I className="h-6 w-6 shrink-0 text-accent" />
@@ -110,10 +110,10 @@ function Index() {
       </section>
 
       <Grid
-        title="أحدث الإصدارات"
+        title="Fresh from the shelf"
         loading={isLoading}
         items={latest}
-        link={<Link to="/catalog" search={{ sort: "new" }} className="text-sm text-accent">عرض الكل ←</Link>}
+        link={<Link to="/catalog" search={{ sort: "new" }} className="text-sm text-accent">View all →</Link>}
       />
 
       {deal && (
@@ -122,12 +122,12 @@ function Index() {
             <div className="hero-glow absolute inset-0 opacity-60" />
             <div className="relative grid items-center gap-8 md:grid-cols-[1fr_auto]">
               <div>
-                <span className="rounded-full bg-accent px-3 py-1 text-xs font-bold text-accent-foreground">عرض الأسبوع</span>
+                <span className="rounded-full bg-accent px-3 py-1 text-xs font-bold text-accent-foreground">This week’s standout</span>
                 <h2 className="mt-4 text-3xl font-extrabold md:text-4xl">{deal.title}</h2>
-                <p className="mt-2 opacity-80">{deal.author} — الأكثر مبيعاً في Kova</p>
+                <p className="mt-2 opacity-80">{deal.author} — a Kova bestseller</p>
                 <p className="mt-4 max-w-lg opacity-90">{deal.description}</p>
                 <Button variant="secondary" className="mt-6 rounded-full" asChild>
-                  <Link to="/product/$slug" params={{ slug: deal.slug }}>اشترِ الآن بـ {format(Number(deal.price))}</Link>
+                  <Link to="/product/$slug" params={{ slug: deal.slug }}>Discover it for {format(Number(deal.price))}</Link>
                 </Button>
               </div>
               <div className="mx-auto w-44 rotate-3"><BookCover title={deal.title} author={deal.author} hue={deal.cover_hue} /></div>
@@ -137,16 +137,16 @@ function Index() {
       )}
 
       <Grid
-        title="الأكثر مبيعاً"
+        title="Readers’ favorites"
         loading={isLoading}
         items={best}
-        link={<Link to="/catalog" search={{ sort: "best" }} className="text-sm text-accent">عرض الكل ←</Link>}
+        link={<Link to="/catalog" search={{ sort: "best" }} className="text-sm text-accent">View all →</Link>}
       />
       <Grid
-        title="مختارات المحررين"
+        title="Editor’s shelf"
         loading={isLoading}
         items={featured.slice(0, 10)}
-        link={<Link to="/catalog" className="text-sm text-accent">الكتالوج ←</Link>}
+        link={<Link to="/catalog" className="text-sm text-accent">Browse catalog →</Link>}
       />
     </>
   );
