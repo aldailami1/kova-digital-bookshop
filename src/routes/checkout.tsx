@@ -46,15 +46,30 @@ function Checkout() {
     if (name.trim().length < 2) { toast.error("Enter the name shown on the card."); return; }
     if (card.replace(/\s/g, "").length < 12) { toast.error("Enter a valid card number."); return; }
     setBusy(true);
-    const { data, error } = await supabase.rpc("place_order", {
-      _items: items.map((i) => ({ product_id: i.product_id, quantity: i.quantity })),
-      _customer_name: name.trim(),
-    });
-    setBusy(false);
-    if (error) { toast.error("We couldn’t complete your order."); return; }
-    clear();
-    toast.success("Payment complete. Your order is ready to download.");
-    navigate({ to: "/account", search: { order: data as string } });
+    try {
+      const { data: sessionData } = await supabase.auth.getSession();
+      const resp = await fetch(`${import.meta.env["VITE_SUPABASE_URL"]}/functions/v1/place-order`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${sessionData.session?.access_token ?? ""}`,
+          apikey: import.meta.env["VITE_SUPABASE_PUBLISHABLE_KEY"] ?? "",
+        },
+        body: JSON.stringify({
+          items: items.map((i) => ({ product_id: i.product_id, quantity: i.quantity })),
+          customer_name: name.trim(),
+        }),
+      });
+      setBusy(false);
+      if (!resp.ok) { toast.error("We couldn’t complete your order."); return; }
+      const result = await resp.json() as { order_id: string };
+      clear();
+      toast.success("Payment complete. Your order is ready to download.");
+      navigate({ to: "/account", search: { order: result.order_id } });
+    } catch {
+      setBusy(false);
+      toast.error("We couldn’t complete your order.");
+    }
   };
 
   return (

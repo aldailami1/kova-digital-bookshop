@@ -1,1 +1,4 @@
 project_id = "kitqdltthrmdepxvzpft"
+
+[functions.place-order]
+verify_jwt = true
